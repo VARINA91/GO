@@ -1,17 +1,22 @@
 package main
 
+// thêm vào 2 module chúng ta cần
 import (
-	"fmt"
-	"math/rand"
-	"time"
+    "fmt"
+    "io/ioutil"
 )
 
 func main() {
-	for i := 0; i < 10; i++ {
-		dur := time.Duration(rand.Intn(1000)) * time.Millisecond
-		fmt.Printf("Sleeping for %v\n", dur)
-		// Sleep for a random duration between 0-1000ms
-		time.Sleep(dur)
-	}
-	fmt.Println("Done!")
+    // Đọc nội dung trong localfile.data
+    data, err := ioutil.ReadFile("localfile.data")
+    // Nếu chương trình không thể đọc file
+    // in ra nguyên nhân tại sao
+    if err != nil {
+        fmt.Println(err)
+    }
+
+    // Nếu đọc file thành công thì
+    // in ra nội dung như một string
+    fmt.Println(string(data))
+
 }
